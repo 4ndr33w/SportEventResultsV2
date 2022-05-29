@@ -1,0 +1,100 @@
+﻿<Window x:Class="SportEventResultsV2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportEventResultsV2"
+        mc:Ignorable="d"
+       Title="Мониторинг результатов" Height="800" Width="1400" MinHeight="600" MinWidth="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="719*"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="295*"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="371"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF1D1D1D"/>
+                <GradientStop Color="#FF424242" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid x:Name="GridData" 
+                  Grid.Column="0" 
+                          AutoGenerateColumns="false"
+                          Background="#FF424242" 
+                          RowBackground="#FF424242" 
+                          Foreground="Black" 
+                          HorizontalGridLinesBrush="Gray"
+                          VerticalGridLinesBrush="Gray"
+                          HorizontalContentAlignment="Center">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType ="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="BorderBrush" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn x:Name="Place" Binding="{Binding place}" Header=" Позиция " IsReadOnly="True"/>-->
+                <!--<DataGridTextColumn x:Name="Place"  Header=" Позиция " Foreground="White" IsReadOnly="True"/>-->
+                <DataGridTextColumn x:Name="Name" Binding="{Binding name}" Header=" Имя " Foreground="White" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="result" Binding="{Binding result}" Header=" Результат " Foreground="White" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="City" Binding="{Binding city}" Header=" Город " Foreground="White" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="company" Binding="{Binding company}" Header=" предприятие " Foreground="White" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="gender" Binding="{Binding gender}" Header=" Пол " Foreground="White" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="updatedAt" Binding="{Binding updatedAt}" Header=" обновлено " Foreground="White" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <DataGrid x:Name="CompanySupremacyGrid" 
+                  Grid.Column="2" 
+                          AutoGenerateColumns="False"
+                          Background="#FF424242" 
+                          RowBackground="#FF424242" 
+                          Foreground="Black" 
+                          HorizontalGridLinesBrush="Gray"
+                          VerticalGridLinesBrush="Gray"
+                          HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="8,0,0,0">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType ="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="BorderBrush" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn x:Name="CompanyPlace" Binding="{Binding place}" Header=" Позиция " IsReadOnly="True"/>-->
+                <DataGridTextColumn x:Name="Companyresult" Binding="{Binding result}" Foreground="White" Header=" Общий результат " IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="companyName" Binding="{Binding company}" Foreground="White" Header=" предприятие " IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="4">
+            <Button Margin="0,50,0,0" Content="Обновить" Background="Black" Foreground="White" Width="100"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Пол" Margin="15, 50, 10, 0"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" HorizontalContentAlignment="Center"/>
+                <Label Content="предприятие" Margin="15, 50, 10, 0"  Width="215" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="GenderCmbBox" 
+                          Margin="15, 5, 10, 10" 
+                          Width="100" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Top">
+                    <ComboBoxItem>все</ComboBoxItem>
+                    <ComboBoxItem>м</ComboBoxItem>
+                    <ComboBoxItem>ж</ComboBoxItem>
+                </ComboBox>
+                <ComboBox x:Name="CompanyCmbBox" Margin="15, 5, 15, 10" Width="215" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding}">
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
